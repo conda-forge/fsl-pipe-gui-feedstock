@@ -1,25 +1,24 @@
 {% set name = "fsl-pipe-gui" %}
-{% set version = "0.1.1" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/fsl-pipe-gui-{{ version }}.tar.gz
-  sha256: 0733c7b62931026e2d072cc73738ae0b2b564360db77e203774d0c470ddbf3cc
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 1c1f857a745fbd27a4a7c7dc65d25780bc3c9bc3ef420ee27ed9ddaa1dae85aa
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 1
+  number: 0
 
 requirements:
   host:
     - python {{ python_min }}
-    - setuptools >=42
-    - wheel
     - pip
+    - hatchling
   run:
     - python >={{ python_min }}
     - fsl-pipe >=0.7
